@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-// Conexión a MongoDB usando la variable de entorno
+// Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -15,7 +15,6 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('Conectado a MongoDB'))
 .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// Modelos
 const ProductoSchema = new mongoose.Schema({
     nombre: String,
     precio: Number,
@@ -30,8 +29,6 @@ const PedidoSchema = new mongoose.Schema({
 
 const Producto = mongoose.model('Producto', ProductoSchema);
 const Pedido = mongoose.model('Pedido', PedidoSchema);
-
-// Rutas
 
 // GET - Obtener catálogo de productos
 app.get('/api/catalogo', async (req, res) => {
@@ -57,13 +54,11 @@ app.post('/api/pedido', async (req, res) => {
             return res.status(400).send('Producto no disponible o cantidad insuficiente');
         }
 
-        // Crear pedido
         const nuevoPedido = new Pedido({
             productoId: producto._id,
             cantidad: cantidad
         });
 
-        // Actualizar stock
         producto.cantidadDisponible -= cantidad;
         await producto.save();
         await nuevoPedido.save();

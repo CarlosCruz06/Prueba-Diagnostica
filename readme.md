@@ -8,13 +8,12 @@
 
 ## Requisitos Previos
 1. Tener Node.js instalado en tu máquina. [Descargar Node.js](https://nodejs.org)
-2. Tener MongoDB instalado y corriendo localmente o utilizar una instancia de MongoDB en la nube (por ejemplo, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)).
 
 ## Instalación
 
 1. Clona este repositorio:
     ```bash
-    git clone <url_del_repositorio>
+    git clone https://github.com/CarlosCruz06/Prueba-Diagnostica.git
     ```
 
 2. Entra en el directorio del proyecto:
